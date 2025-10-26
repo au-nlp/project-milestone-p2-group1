@@ -3,7 +3,14 @@
 # Project Title
 
 ## Abstract
-A 150-word description of the project idea and goals. What’s the motivation behind your project? What story would you like to tell, and why?
+
+This project aims to build a dual-stage system that first converts long texts into concise TL;DRs, then transfers the stylisation into Gen Z slang. This process creates informal summaries with current language.
+
+Traditional summarizers such as extractive (TextRank) or abstractive ones (based on seq2seq or Transformer architectures) often produce factually correct but stylistically neutral results, which might seem bland. 
+
+We attempt to show models can be adjusted to adapt information for younger audiences in proper contexts without losing meaning or coherence. By adding a style-transfer/machine translation stage, we aim to enhance factual summarization with expressive current language, which is used on the internet or daily by younger generations. 
+
+To successfully accomplish our goal we need high quality datasets, however the existing ones are either too short, inaccurate or incomplete. Our goal is to create a more robust Gen Z dataset, combining the existing ones and adding synthetic data as examples of using the slang words.
 
 ## Contributions
 What's the contribution or novelty that you're aiming to produce.
