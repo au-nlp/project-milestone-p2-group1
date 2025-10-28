@@ -1,19 +1,21 @@
 name: nlp
 channels:
-  - conda-forge
   - defaults
 dependencies:
   - python=3.10
-  - pip
-  - numpy
-  - pandas
   - scikit-learn
-  - matplotlib
-  - seaborn
+  - pip
   - pytorch
+  - ipykernel
   - torchvision
   - torchaudio
-  - ipykernel
+  - numpy
+  - matplotlib
+  - pandas
+  - seaborn
+  - notebook
+  - jupyter
+  - ipywidgets
   - pip:
       - datasets
       - transformers>=4.41
