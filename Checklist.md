@@ -1,6 +1,6 @@
 # Before dealline 2
   - [ ] Split the notebook into 2 parts, one for only creating data analysis and one from generating data
-  - [ ] Rename Notebook to main.ipynb
+  - [x] Rename Notebook to main.ipynb
   - [ ] Data analysis for the datasets
   - [ ] Data analysis for the newly create TL;DR dataset
   - [ ] Generate TL;DR new `GenZ_Completion` column
