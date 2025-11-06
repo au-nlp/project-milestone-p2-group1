@@ -30,9 +30,11 @@ Our main contribution is creating more robust Gen Z dictionary dataset and exten
 Describe the methods you plan to use for analysis, modeling, and evaluation.
 
 ### Data Analysis
-- Combining gen z dictionaries. Generating synthetic data to extend TL;DR for having input paired data for SFT of a pretrained summarizer 
+
+- Exploratory data analysis of Gen Z datasets and TL;DR corpus. Combining gen z dictionaries. Generating synthetic data to extend TL;DR for having input paired data for SFT of a pretrained summarizer 
 
 ### Modelling
+
 - Architecture: (T5-base, BERT, ...) (fine-tuned on style-transfer task) different pretrained summarizers. 
 - SFT
 - input - TL;DR completion sample + respective Gen Z completion (+ prompt???)
