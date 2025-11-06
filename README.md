@@ -54,10 +54,8 @@ TODO:
 
 ## Proposed Timeline
 
-Outline your timeline for completing the project milestones and tasks.
-
 ### Milestone 1
-- individual project proposals
+- 
 ### Milestone 2
 - readme.md
 - synthetic data generation
@@ -66,19 +64,24 @@ Outline your timeline for completing the project milestones and tasks.
 - main.jpyntb
 ### Milestone 3
 - ???
-- 
-| Date | Milestone | Check-in |
+  
+| Semester Week | Step | Milestone |
 |------|-----------|----------|
-| Week 1 | Setup & Exploration | Data report |
-| Week 3 | Data Ready | Merged dict + TLDR |
-| Week 5 | Models Trained | Model checkpoints |
-| Week 6 | Evaluation Done | Metrics report |
-| Week 7 | Final | Complete system |
+| Week 4 | Individual project proposals | 1 |
+| Week 7 | Choosing common project idea | 2 |
+| Week 9 | Refine project idea in detail, do data analysis | 2 |
+| Week 10 | Synthetic data generation, README file | 2 |
+| Week 11 | Clean the code, prepare main.ipynt | 2 |
 
-TODO:
 
 ## Organization Within the Team
 
-List the internal milestones and responsibilities for each team member up until project Milestone P3.
+Bjarke
+- Synthetic data generation
+- clean code
 
-TODO:
+Pablo
+- Data analysis
+
+Michal
+- README.md
