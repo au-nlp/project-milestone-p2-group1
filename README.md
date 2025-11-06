@@ -14,31 +14,38 @@ To achieve this goal, high-quality training data is essential. However, existing
 
 ## Proposed Additional Datasets
 
-Our analysis of existing datasets revealed that no single resource is sufficiently robust for our task. We therefore propose combining and enhancing three complementary datasets to address this gap (detailed in the Contributions section).
+Our analysis of existing datasets revealed that no single resource is sufficiently robust for our task. Therefore, we propose combining and enhancing three complementary datasets to address this gap (detailed in the Contributions section).
 
 - [Programmer-RD-AI/genz-slang-pairs-1k](https://huggingface.co/datasets/Programmer-RD-AI/genz-slang-pairs-1k): Paired normal and GenZ slang sentences without a slang word column; slang words will be extracted and used to correct and complete the slang dictionary for more accurate explanations.
 - [MLBtrio/genz-slang-dataset](https://huggingface.co/datasets/MLBtrio/genz-slang-dataset): GenZ slang dictionary description, context, and usage examples intended for fine-tuning slang models; lacks direct translation and is being improved. The dataset will be updated with a new column that translates into normal English language, aligning with the genz-slang-pairs-1k.
 - [tawfiayeasmin/gen-z-words-and-phrases-dataset](https://www.kaggle.com/datasets/tawfiayeasmin/gen-z-words-and-phrases-dataset): GenZ slang dictionary with a popularity score; contains mostly unique entries with almost no overlap with other datasets. Due to this lack of overlap, it will be used to extend the slang dictionary; however, but the popularity metric cannot be utilised effectively since it is not supported by the rest of the dataset.
-- [TL;DR](https://huggingface.co/datasets/trl-lib/tldr): Reddit post and summaries of 100K+ examples. Will be extended with a GenZ style of summarization.
+- [TL;DR](https://huggingface.co/datasets/trl-lib/tldr): Reddit post and summaries of 100K+ examples. Will be extended with a GenZ style summarization.
 
 ## Contributions
 
-Our main contribution is creating more robust Gen Z dictionary dataset and extending the TL;DR corpus. Combining existing Gen Z datasets and enhancing them with synthetic data for slang translations enables more robust and accurate alignment between slang and formal language, which can be used for improving slang detection and text generation models. The TL;DR corpus is extended by a new column of synthetic data, which mirros the completion column but with added Gen Z slang. Fine-tuned BLEURT metric for evaluation to understand GenZ embeddings.  
+Our main contributions are as follows.
+- Creating more robust Gen Z dictionary dataset.
+  Combining existing Gen Z datasets and enhancing them with synthetic data for slang translations enables more robust and accurate alignment between slang and formal language, which could be used for improving slang detection and text generation models.
+  We will use it for supervised fine-tuning of a pretrained summarizer.
+- The TL;DR corpus is extended by a new column of synthetic data, which mirros the completion (TL;DR summary) column with added Gen Z slang.
+- For evaluation, we want to fine-tune the BLEURT metric with Gen Z embeddings.
 
 ## Methods
 
-Describe the methods you plan to use for analysis, modeling, and evaluation.
-
 ### Data Analysis
 
-- Exploratory data analysis of Gen Z datasets and TL;DR corpus. Combining gen z dictionaries. Generating synthetic data to extend TL;DR for having input paired data for SFT of a pretrained summarizer 
+We have conducted an exploratory data analysis of the TL;DR corpus and our Gen Z dataset.
+Our Gen Z dataset consists of three existing Gen Z datasets/dictionaries, which are listed in the Proposed Additional Datasets section.
+We generate synthetic data to extend TL;DR for having input paired data for SFT of a pretrained summarizer.
+You can find the details in the file `main.ipynb`.
 
 ### Modelling
 
-- Architecture: (T5-base, BERT, ...) (fine-tuned on style-transfer task) different pretrained summarizers. 
-- SFT
+We can possibly explore fine-tuning different pretrained summarizers (e.g. T5-base, BERT) and then compare their results.
 - input - TL;DR completion sample + respective Gen Z completion (+ prompt???)
 - output - Gen Z summary
+
+In a later stage of the project, it is possible to extend the framework by adding a Deep RL agent to improve the fine-tuned summarizer.
 
 ### Evaluation
 - Primary: BLEURT fine-tuned metric (semantic preservation correlation)
