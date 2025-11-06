@@ -22,19 +22,40 @@ Our analysis of existing datasets revealed that no single resource is sufficient
 
 ## Contributions
 
-Combining existing Gen Z datasets and enhancing them with synthetic data for slang translations enables more robust and accurate alignment between slang and formal language, improving slang detection and generation models.
-
-TODO:
+Our main contribution is creating more robust Gen Z dictionary dataset and extending the TL;DR corpus. Combining existing Gen Z datasets and enhancing them with synthetic data for slang translations enables more robust and accurate alignment between slang and formal language, which can be used for improving slang detection and text generation models. The TL;DR corpus is extended by a new column of synthetic data, which mirros the completion column but with added Gen Z slang.
 
 ## Methods
 
 Describe the methods you plan to use for analysis, modeling, and evaluation.
+
+### Data Analysis
+- Combining gen z dictionaries. Generating synthetic data to extend TL;DR for having input paired data for SFT of a pretrained summarizer 
+
+### Modelling
+- different pretrained summarizers (T5, BERT, ...)
+- SFT
+- input - TL;DR completion sample + respective Gen Z completion (+ prompt???)
+- output - Gen Z summary
+
+### Evaluation
+- BLEURT 
 
 TODO:
 
 ## Proposed Timeline
 
 Outline your timeline for completing the project milestones and tasks.
+
+### Milestone 1
+- individual project proposals
+### Milestone 2
+- readme.md
+- synthetic data generation
+- combining gen z dictionaries
+- data analysis
+- main.jpyntb
+### Milestone 3
+- ???
 
 TODO:
 
