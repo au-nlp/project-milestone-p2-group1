@@ -19,6 +19,7 @@ Our analysis of existing datasets revealed that no single resource is sufficient
 - [Programmer-RD-AI/genz-slang-pairs-1k](https://huggingface.co/datasets/Programmer-RD-AI/genz-slang-pairs-1k): Paired normal and GenZ slang sentences without a slang word column; slang words will be extracted and used to correct and complete the slang dictionary for more accurate explanations.
 - [MLBtrio/genz-slang-dataset](https://huggingface.co/datasets/MLBtrio/genz-slang-dataset): GenZ slang dictionary description, context, and usage examples intended for fine-tuning slang models; lacks direct translation and is being improved. The dataset will be updated with a new column that translates into normal English language, aligning with the genz-slang-pairs-1k.
 - [tawfiayeasmin/gen-z-words-and-phrases-dataset](https://www.kaggle.com/datasets/tawfiayeasmin/gen-z-words-and-phrases-dataset): GenZ slang dictionary with a popularity score; contains mostly unique entries with almost no overlap with other datasets. Due to this lack of overlap, it will be used to extend the slang dictionary; however, but the popularity metric cannot be utilised effectively since it is not supported by the rest of the dataset.
+- [TL;DR](https://huggingface.co/datasets/trl-lib/tldr): Reddit post and summaries of 100K+ examples. Will be extended with a GenZ style of summarization.
 
 ## Contributions
 
@@ -56,6 +57,14 @@ Outline your timeline for completing the project milestones and tasks.
 - main.jpyntb
 ### Milestone 3
 - ???
+- 
+| Date | Milestone | Check-in |
+|------|-----------|----------|
+| Week 1 | Setup & Exploration | Data report |
+| Week 3 | Data Ready | Merged dict + TLDR |
+| Week 5 | Models Trained | Model checkpoints |
+| Week 6 | Evaluation Done | Metrics report |
+| Week 7 | Final | Complete system |
 
 TODO:
 
