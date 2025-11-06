@@ -23,7 +23,7 @@ Our analysis of existing datasets revealed that no single resource is sufficient
 
 ## Contributions
 
-Our main contribution is creating more robust Gen Z dictionary dataset and extending the TL;DR corpus. Combining existing Gen Z datasets and enhancing them with synthetic data for slang translations enables more robust and accurate alignment between slang and formal language, which can be used for improving slang detection and text generation models. The TL;DR corpus is extended by a new column of synthetic data, which mirros the completion column but with added Gen Z slang.
+Our main contribution is creating more robust Gen Z dictionary dataset and extending the TL;DR corpus. Combining existing Gen Z datasets and enhancing them with synthetic data for slang translations enables more robust and accurate alignment between slang and formal language, which can be used for improving slang detection and text generation models. The TL;DR corpus is extended by a new column of synthetic data, which mirros the completion column but with added Gen Z slang. Fine-tuned BLEURT metric for evaluation to understand GenZ embeddings.  
 
 ## Methods
 
@@ -33,13 +33,13 @@ Describe the methods you plan to use for analysis, modeling, and evaluation.
 - Combining gen z dictionaries. Generating synthetic data to extend TL;DR for having input paired data for SFT of a pretrained summarizer 
 
 ### Modelling
-- different pretrained summarizers (T5, BERT, ...)
+- Architecture: (T5-base, BERT, ...) (fine-tuned on style-transfer task) different pretrained summarizers. 
 - SFT
 - input - TL;DR completion sample + respective Gen Z completion (+ prompt???)
 - output - Gen Z summary
 
 ### Evaluation
-- BLEURT 
+- Primary: BLEURT fine-tuned metric (semantic preservation correlation)
 
 TODO:
 
