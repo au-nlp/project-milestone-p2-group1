@@ -72,8 +72,8 @@ The proposed timeline is sketched out in the table below. The part for milestone
 We meet in person regularly and do some work together, but we also work individually at home, which was roughly assigned between us as described below (for now only tasks for milestone 2).  
 
 Bjarke
+- Data preprocessing
 - Synthetic data generation
-- Clean code
 
 Pablo
 - Research of existing datasets
@@ -81,4 +81,4 @@ Pablo
 
 Michal
 - README.md
-- Clean code
+- Clean code and text editing
