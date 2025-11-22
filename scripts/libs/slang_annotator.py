@@ -21,7 +21,7 @@ class SlangAnnotator:
             show_progress_bar=True
         )
     
-    def _get_top_p_indices(self, similarities, top_p=0.9):
+    def get_top_p_indices(self, similarities, top_p=0.9):
         """
         Select words until cumulative probability reaches top_p threshold.
         """
@@ -43,7 +43,7 @@ class SlangAnnotator:
         """
         tldr_embedding = self.model.encode([tldr_text])[0]
         similarities = cosine_similarity([tldr_embedding], self.slang_embeddings)[0]
-        top_p_indices = self._get_top_p_indices(similarities, top_p=top_p)
+        top_p_indices = self.get_top_p_indices(similarities, top_p=top_p)
         
         slang_list = self.genz_data.iloc[top_p_indices]['Slang'].tolist()
         slang_string = "; ".join(slang_list)
