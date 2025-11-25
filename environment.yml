@@ -1,4 +1,4 @@
-name: nlp
+name: nlp2
 channels:
   - defaults
 dependencies:
@@ -23,3 +23,10 @@ dependencies:
       - nltk
       - kagglehub
       - tqdm
+      - sentencepiece
+      - sacrebleu
+      - rouge-score
+      - kagglehub
+      - langdetect
+      - sentence_transformers
+
