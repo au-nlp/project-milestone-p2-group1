@@ -26,6 +26,8 @@ def compute_all_similarities(df, genz_data, model, slang_embeddings):
         similarities = cosine_similarity([tldr_embedding], slang_embeddings)[0]
         
         # Normalize to [0, 1] range
+        # L2 normalization instead of min-max to avoid zero-division
+        # L1 normalization could also be used
         similarities = (similarities - similarities.min()) / (similarities.max() - similarities.min())
         
         # Store as semicolon-separated strings
@@ -107,11 +109,11 @@ def apply_top_k_selection(df, max_k=6):
     top_k_slang_count_list = []
     print(f"Selecting top-{max_k} slang words...")
     for idx, row in tqdm(df.iterrows(), total=len(df), desc="Selecting top-k slang"):
-        slang_split = [s.strip() for s in row['relevant_slang'].split(";") if s.strip()]
-        sim_split = [float(s) for s in row['relevant_similarities'].split(";") if s.strip()]
+        slang_split = [s.strip() for s in row['all_slang'].split(";") if s.strip()]
+        all_similarities = np.array([float(x) for x in row['all_similarities'].split(';')])
         
         # Combine and sort by similarity
-        slang_sim_pairs = list(zip(slang_split, sim_split))
+        slang_sim_pairs = list(zip(slang_split, all_similarities))
         slang_sim_pairs.sort(key=lambda x: x[1], reverse=True)
         
         # Select top-k

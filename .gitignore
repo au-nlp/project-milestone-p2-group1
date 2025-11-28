@@ -217,3 +217,13 @@ __marimo__/
 .streamlit/secrets.toml
 *tldr_partly_2310_done.csv
 *tldr_with_slang.csv
+*tldr_annotated_with_slang.csv
+*tldr_annotated_with_slang1.csv
+*tldr_with_genz.csv
+*tldr_with_genz_checkpoint.csv
+*tldr_annotated_with_genz.csv
+*tldr.csv
+*tldr_top_k.csv 
+*tldr_top_k_checkpoint.csv
+*slang_usage_stats.csv
+*slang_annotation_stats.csv
