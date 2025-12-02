@@ -228,3 +228,4 @@ __marimo__/
 *slang_usage_stats.csv
 *slang_annotation_stats.csv
 *tldr_top_k_1.csv
+*t5-summarization-model/

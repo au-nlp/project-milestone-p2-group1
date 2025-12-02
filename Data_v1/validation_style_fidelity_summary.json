@@ -1,0 +1,8 @@
+{
+  "split": "validation",
+  "num_examples": 300,
+  "avg_style_fidelity": 0.7914694865047932,
+  "std_style_fidelity": 0.05366842234701595,
+  "min_style_fidelity": 0.5237277671694756,
+  "max_style_fidelity": 0.8768513053655624
+}
