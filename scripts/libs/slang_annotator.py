@@ -4,7 +4,8 @@ from tqdm import tqdm
 import pandas as pd
 from typing import Tuple
 from sentence_transformers import SentenceTransformer
-from scripts.libs.top_p import get_top_p_indices
+from scripts.libs.utils import get_top_p_indices
+from matplotlib import pyplot as plt
 
 def compute_all_similarities(df, genz_data, model, slang_embeddings):
     """
@@ -167,3 +168,52 @@ def sample_slang_column(df, sample_ratio=0.7):
     print(f"  Added columns: ['sampled_slang', 'sampled_slang_count']\n")
     
     return df
+
+def analyze_similarity_distribution_simple(df, row_idx=0, bins=40):
+    """
+    Simple analysis of similarity distribution for one TL;DR post.
+    - Histogram of similarities
+    - Annotated with mean, std, min, max
+    """
+    row = df.iloc[row_idx]
+    similarities = np.array([float(x) for x in row['all_similarities'].split(';')])
+
+    mean_sim = similarities.mean()
+    std_sim = similarities.std()
+    sim_min = similarities.min()
+    sim_max = similarities.max()
+    print(f"Similarity stats - Count: {len(similarities)}, Mean: {mean_sim:.4f}, Std: {std_sim:.4f}, Min: {sim_min:.4f}, Max: {sim_max:.4f}")
+
+    plt.figure(figsize=(7, 4))
+    plt.hist(similarities, bins=bins, color='steelblue',
+             edgecolor='black', alpha=0.8)
+    plt.xlabel("Normalized similarity", fontsize=11)
+    plt.ylabel("Count", fontsize=11)
+
+    completion_text = row['completion'][:80] + "..."
+    plt.title(f"Similarity distribution for one TL;DR\n{completion_text}",
+              fontsize=11)
+
+    # Text box with tightness info
+    text = (
+        f"Mean: {mean_sim:.3f}\n"
+        f"Std dev: {std_sim:.3f}\n"
+        f"Min: {sim_min:.3f}, Max: {sim_max:.3f}\n"
+        f"Range: {sim_max - sim_min:.3f}"
+    )
+    plt.gca().text(0.98, 0.95, text, transform=plt.gca().transAxes,
+                   ha="right", va="top",
+                   bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.5),
+                   fontsize=9)
+
+    plt.grid(axis="y", alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+
+    return {
+        "mean": mean_sim,
+        "std": std_sim,
+        "min": sim_min,
+        "max": sim_max,
+        "range": sim_max - sim_min,
+    }
