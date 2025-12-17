@@ -1,7 +1,0 @@
-{
-  "split": "validation",
-  "num_examples": 300,
-  "avg_rouge1": 0.21590061169118122,
-  "avg_rouge2": 0.027769512468893302,
-  "avg_rougeL": 0.13006715729469195
-}
