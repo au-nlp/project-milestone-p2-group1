@@ -58,8 +58,8 @@ The proposed timeline is sketched out in the table below. The part for milestone
 |           | Week 10-12    | Synthetic data generation          |
 |           | Week 11       | Clean code                         |
 | 3         | Week 12       | Analysing generated synthetic data |
-|           | Week 13       | SFT of a summarizer                |
-|           | Week 14       | Testing the model with LLM as Jugde|
+|           | Week 13-14    | SFT of a summarizer (T5, BART)     |
+|           | Week 14-15    | Evaluation with our metrics and an LLM judge |
 |           | Week 15-16    | Writing the report                 |
 
 ## Organization Within the Team
