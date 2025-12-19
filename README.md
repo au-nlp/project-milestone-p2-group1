@@ -17,7 +17,7 @@ To achieve this goal, high-quality training data is essential. However, existing
 - [TL;DR](https://huggingface.co/datasets/trl-lib/tldr): Reddit post and summaries of 100K+ examples. Will be extended with a Gen Z style summarization.
 
 ## Contributions
-Our project makes the following key contributions to the field of style transfer and summarization:
+Our project makes the following key contributions to the field of style transfer and summarization.
 -   **Robust Gen Z Dictionary**: We constructed and enchanced a unified dictionary of **1,888 unique slang terms** by merging and standardizing three fragmented open-source datasets (MLBtrio, Programmer-RD-AI, and Kaggle), resolving issues of duplication and missing context.
 -   **Large-Scale Synthetic Corpus**: We generated **116,578 high-quality parallel training pairs** (standard TL;DR $\to$ Gen Z TL;DR). This was achieved using a retrieval-augmented generation pipeline where **OpenAI GPT OSS 120B** rewrote summaries guided by semantically relevant slang embeddings.
 -  **Supervised Fine-Tuning Evaluation**: We fine-tuned and compared **T5-small** and **BART-base** architectures, demonstrating that BART-base outperforms T5 in preserving meaning while adopting the target style.
@@ -85,5 +85,5 @@ Michal
 
 ## Appendices and Artifacts
 -   **Model Weights & Datasets**: uploaded to [Google Drive](https://drive.google.com/drive/folders/1QABHakQ12phfQRyPg9b7-yrZjMOL3j6z?usp=drive_link) and [Kagglehub](https://www.kaggle.com/datasets/bjarkekarlsen/tldr-genz-completion).
--   **Custom Metrics**: see `scripts/slang_score.py` for the implementation of the slang density penalty function used in our Style Fidelity score. The rest is in the `main.ipynb`
+-   **Custom Metrics**: see `scripts/slang_score.py` for the implementation of the slang density penalty function used in our Style Fidelity score. The rest is in the `main.ipynb`.
 -   **Data Generation**: see notebook `data_generation.ipynb`.
