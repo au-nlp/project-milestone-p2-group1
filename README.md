@@ -24,15 +24,13 @@ Our project makes the following key contributions to the field of style transfer
 
 ## Methods
 ### Data Analysis
-
 We have conducted an exploratory data analysis of the TL;DR corpus and our Gen Z dataset.
 Our Gen Z dataset consists of three existing Gen Z datasets/dictionaries, which are listed in the Proposed Additional Datasets section.
 We embed neutral translations of slang terms and retrieval-match them to TL;DR summaries using cosine similarity.
 An LLM (GPT OSS 120B) rewrites the summaries using the retrieved slang, creating a supervised training set.
-You can find all the details in file `data_generation.ipynb`.
+You can find all the details in the file `data_generation.ipynb`.
 
 ### Modelling
-
 Our aim is to perform a supervised fine-tuning (SFT) step on a pretrained summarizer. We explore different pretrained summarizers (T5-small and BART-base) and then compare their results. Our target output is Gen Z style summary. Thus, the fine-tuning receives as input a TL;DR prompt, its completion and a respective synthetically generated Gen Z completion.
 
 ### Evaluation
@@ -85,7 +83,7 @@ Michal
 - Running fine-tuning experiments
 - Writing the report
 
-## Appendix / Artifacts
--   **Model Weights & Datasets**: Uploaded to [Google Drive](https://drive.google.com/drive/folders/1QABHakQ12phfQRyPg9b7-yrZjMOL3j6z?usp=drive_link) and [Kagglehub](https://www.kaggle.com/datasets/bjarkekarlsen/tldr-genz-completion).
--   **Custom Metrics**: See `scripts/slang_score.py` for the implementation of the slang density penalty function used in our Style Fidelity score.
--   **Data Generation** See notebook `data_generation.ipynb`.
+## Appendices and Artifacts
+-   **Model Weights & Datasets**: uploaded to [Google Drive](https://drive.google.com/drive/folders/1QABHakQ12phfQRyPg9b7-yrZjMOL3j6z?usp=drive_link) and [Kagglehub](https://www.kaggle.com/datasets/bjarkekarlsen/tldr-genz-completion).
+-   **Custom Metrics**: see `scripts/slang_score.py` for the implementation of the slang density penalty function used in our Style Fidelity score. The rest is in the `main.ipynb`
+-   **Data Generation**: see notebook `data_generation.ipynb`.
