@@ -6,15 +6,13 @@
 
 This project aims to build a dual-stage system trained on TL;DR dataset and our own Gen Z dictionary. The system first converts long texts into concise TL;DRs, then applies style transfer to render summaries in Gen Z slang, creating engaging informal summaries that use contemporary youth language.
 
-Traditional summarizers, whether extractive (e.g., TextRank) or abstractive (based on seq2seq or Transformer architectures), often produce factually correct but stylistically neutral outputs. The output may not see interesting and to capture young audiences attention, we try to capture the expressive, informal tone characteristic of digital communication among Gen Z.
+Traditional summarizers, whether extractive (e.g., TextRank) or abstractive (based on seq2seq or Transformer architectures), often produce factually correct but stylistically neutral outputs. These outputs appear non optimal from an appealing and markeatble point of view towards young audiences,which value the expressive, and informal tone characteristic of the digital communication among Gen Z.
 
-We attempt/demonstrate to show that summarization models can be enhanced with style-transfer capabilities to make information more accessible and engaging for younger audiences without sacrificing meaning or coherence. By incorporating a style-transfer stage, we aim to enhance factual summarization with expressive contemporary language that is commonly used online and in everyday communication by younger generations.
+We attempt to show that summarization models can be enhanced with style-transfer capabilities to make information more accessible and engaging for younger audiences without sacrificing meaning or coherence. By incorporating a style-transfer stage, we aim to enhance factual summarization with expressive contemporary language that is commonly used online and in everyday communication by younger generations.
 
-To achieve this goal, high-quality training data is essential. However, existing Gen Z slang datasets are either too limited in size, contain inaccuracies, or lack completeness. Our contribution addresses this gap by creating a more robust Gen Z slang dataset through the combination of existing resources enhanced with synthetically generated slang-formal sentence pairs.
+To achieve this goal, high-quality training data is essential. However, existing Gen Z slang datasets are too limited in size, contain inaccuracies, or lack completeness. Our contribution addresses this gap by creating a more robust Gen Z slang dataset through the combination of existing resources enhanced with synthetically generated slang-formal sentence pairs.
 
 ## Proposed Additional Datasets
-
-Our analysis of existing datasets revealed that no single resource is sufficiently robust for our task. Therefore, we propose combining and enhancing three complementary datasets to address this gap (detailed in the Contributions section).
 
 - [Programmer-RD-AI/genz-slang-pairs-1k](https://huggingface.co/datasets/Programmer-RD-AI/genz-slang-pairs-1k): Paired normal and Gen Z slang sentences without a slang word column; slang words will be extracted and used to correct and complete the slang dictionary for more accurate explanations.
 - [MLBtrio/genz-slang-dataset](https://huggingface.co/datasets/MLBtrio/genz-slang-dataset): Gen Z slang dictionary description, context, and usage examples intended for fine-tuning slang models; lacks direct translation and is being improved. The dataset will be updated with a new column that translates into normal English language, aligning with the genz-slang-pairs-1k.
@@ -24,10 +22,10 @@ Our analysis of existing datasets revealed that no single resource is sufficient
 ## Contributions
 
 Our project makes the following key contributions to the field of style transfer and summarization:
--   **Robust Gen Z Dictionary**: We constructed a unified dictionary of **1,888 unique slang terms** by merging and standardizing three fragmented open-source datasets (MLBtrio, Programmer-RD-AI, and Kaggle), resolving issues of duplication and missing context.
+-   **Robust Gen Z Dictionary**: We constructed and enchanced a unified dictionary of **1,888 unique slang terms** by merging and standardizing three fragmented open-source datasets (MLBtrio, Programmer-RD-AI, and Kaggle), resolving issues of duplication and missing context.
 -   **Large-Scale Synthetic Corpus**: We generated **116,578 high-quality parallel training pairs** (standard TL;DR $\to$ Gen Z TL;DR). This was achieved using a retrieval-augmented generation pipeline where **OpenAI GPT OSS 120B** rewrote summaries guided by semantically relevant slang embeddings.
--  **Supervised Fine-Tuning Evaluation**: We successfully fine-tuned and compared **T5-small** and **BART-base** architectures, demonstrating that BART-base significantly outperforms T5 in preserving meaning while adopting the target style.
-  
+-  **Supervised Fine-Tuning Evaluation**: We fine-tuned and compared **T5-small** and **BART-base** architectures, demonstrating that BART-base outperforms T5 in preserving meaning while adopting the target style.
+
 ## Methods
 
 ### Data Analysis
@@ -35,14 +33,12 @@ Our project makes the following key contributions to the field of style transfer
 We have conducted an exploratory data analysis of the TL;DR corpus and our Gen Z dataset.
 Our Gen Z dataset consists of three existing Gen Z datasets/dictionaries, which are listed in the Proposed Additional Datasets section.
 We embed neutral translations of slang terms and retrieval-match them to TL;DR summaries using cosine similarity.
- An LLM (GPT OSS 120B) rewrites the summaries using the retrieved slang, creating a supervised training set.
+An LLM (GPT OSS 120B) rewrites the summaries using the retrieved slang, creating a supervised training set.
 You can find all the details in file `data_generation.ipynb`.
 
 ### Modelling
 
-Our aim is to do supervised fine-tuning (SFT) of a pretrained summarizer. We can possibly explore different pretrained summarizers (T5-base and BERT) and then compare their results. Our target output is Gen Z style summary. Thus, we want to input for the fine-tuning a TL;DR prompt, its completion and a respective synthetically generated Gen Z completion.
-
-In a later stage of the project, it is possible to extend the framework by adding a Deep RL agent to improve the fine-tuned summarizer (for example, using TRL library). The reward for the agent could be affected by a probability of how appropriate it is to inject Gen Z slang into the text. The probabilities would need to be generated by a style classifier or just by directly comparing embeddings of slangs and the input text.
+Our aim is to perform a supervised fine-tuning (SFT) step on a pretrained summarizer. We explore different pretrained summarizers (T5-small and BART-base) and then compare their results. Our target output is Gen Z style summary. Thus, the fine-tuning receives as input a TL;DR prompt, its completion and a respective synthetically generated Gen Z completion.
 
 ### Evaluation
 We employed a dual evaluation strategy:
@@ -89,10 +85,12 @@ Bjarke
 
 Pablo
 - Research of existing datasets
-- Data analysis
+- Exploratory data analysis 
+- Report writting
 
 Michal
 - README.md
+- Report writting
 - Clean code and text editing
 
 ## Appendix / Artifacts
