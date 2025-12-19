@@ -4,23 +4,23 @@
 ## Abstract
 This project aims to build a dual-stage system trained on TL;DR dataset and our own Gen Z dictionary. The system first converts long texts into concise TL;DRs, then applies style transfer to render summaries in Gen Z slang, creating engaging informal summaries that use contemporary youth language.
 
-Traditional summarizers, whether extractive (e.g., TextRank) or abstractive (based on seq2seq or Transformer architectures), often produce factually correct but stylistically neutral outputs. These outputs appear non optimal from an appealing and markeatble point of view towards young audiences,which value the expressive, and informal tone characteristic of the digital communication among Gen Z.
+Traditional summarizers, whether extractive (e.g., TextRank) or abstractive (based on seq2seq or Transformer architectures), often produce factually correct but stylistically neutral outputs. These outputs appear non optimal from an appealing and marketable point of view towards young audiences,which value the expressive, and informal tone characteristic of the communication among Gen Z.
 
-We attempt to show that summarization models can be enhanced with style-transfer capabilities to make information more accessible and engaging for younger audiences without sacrificing meaning or coherence. By incorporating a style-transfer stage, we aim to enhance factual summarization with expressive contemporary language that is commonly used online and in everyday communication by younger generations.
+We attempt to show that summarization models can be enhanced with style-transfer capabilities to make information more engaging for younger audiences without sacrificing meaning or coherence. By incorporating a style-transfer stage, we aim to enhance factual summarization with expressive contemporary language that is commonly used online and in everyday communication by younger generations.
 
-To achieve this goal, high-quality training data is essential. However, existing Gen Z slang datasets are too limited in size, contain inaccuracies, or lack completeness. Our contribution addresses this gap by creating a more robust Gen Z slang dataset through the combination of existing resources enhanced with synthetically generated slang-formal sentence pairs.
+To achieve this goal, high-quality training data is essential. However, existing Gen Z slang datasets are too limited in size, contain inaccuracies, or lack completeness. Our contribution addresses this gap by creating a more robust Gen Z slang dataset through the combination of existing resources enhanced with synthetically generated slang-formal sentence pairs. Aditionally, for the purpose of fine-tuning summarizers, we have enhanced the TL;DR corpus by adding a new `GenZ_completion` feature, which is a synthetically generated counterpart to the original `completion` feature. 
 
 ## Proposed Additional Datasets
-- [Programmer-RD-AI/genz-slang-pairs-1k](https://huggingface.co/datasets/Programmer-RD-AI/genz-slang-pairs-1k): Paired normal and Gen Z slang sentences without a slang word column; slang words will be extracted and used to correct and complete the slang dictionary for more accurate explanations.
-- [MLBtrio/genz-slang-dataset](https://huggingface.co/datasets/MLBtrio/genz-slang-dataset): Gen Z slang dictionary description, context, and usage examples intended for fine-tuning slang models; lacks direct translation and is being improved. The dataset will be updated with a new column that translates into normal English language, aligning with the genz-slang-pairs-1k.
-- [tawfiayeasmin/gen-z-words-and-phrases-dataset](https://www.kaggle.com/datasets/tawfiayeasmin/gen-z-words-and-phrases-dataset): Gen Z slang dictionary with a popularity score; contains mostly unique entries with almost no overlap with other datasets. Due to this lack of overlap, it will be used to extend the slang dictionary; however, but the popularity metric cannot be utilised effectively since it is not supported by the rest of the dataset.
-- [TL;DR](https://huggingface.co/datasets/trl-lib/tldr): Reddit post and summaries of 100K+ examples. Will be extended with a Gen Z style summarization.
+- [Programmer-RD-AI/genz-slang-pairs-1k](https://huggingface.co/datasets/Programmer-RD-AI/genz-slang-pairs-1k): paired normal and Gen Z slang sentences without a slang word column; slang words will be extracted and used to correct and complete the slang dictionary for more accurate explanations.
+- [MLBtrio/genz-slang-dataset](https://huggingface.co/datasets/MLBtrio/genz-slang-dataset): gen Z slang dictionary description, context, and usage examples intended for fine-tuning slang models; lacks direct translation and is being improved. The dataset will be updated with a new column that translates into normal English language, aligning with the genz-slang-pairs-1k.
+- [tawfiayeasmin/gen-z-words-and-phrases-dataset](https://www.kaggle.com/datasets/tawfiayeasmin/gen-z-words-and-phrases-dataset): gen Z slang dictionary with a popularity score; contains mostly unique entries with almost no overlap with other datasets. Due to this lack of overlap, it will be used to extend the slang dictionary; however, but the popularity metric cannot be utilised effectively since it is not supported by the rest of the dataset.
+- [TL;DR](https://huggingface.co/datasets/trl-lib/tldr): reddit post and summaries of 100K+ examples. Will be extended with a Gen Z style summarization.
 
 ## Contributions
 Our project makes the following key contributions to the field of style transfer and summarization.
--   **Robust Gen Z Dictionary**: We constructed and enchanced a unified dictionary of **1,888 unique slang terms** by merging and standardizing three fragmented open-source datasets (MLBtrio, Programmer-RD-AI, and Kaggle), resolving issues of duplication and missing context.
--   **Large-Scale Synthetic Corpus**: We generated **116,578 high-quality parallel training pairs** (standard TL;DR $\to$ Gen Z TL;DR). This was achieved using a retrieval-augmented generation pipeline where **OpenAI GPT OSS 120B** rewrote summaries guided by semantically relevant slang embeddings.
--  **Supervised Fine-Tuning Evaluation**: We fine-tuned and compared **T5-small** and **BART-base** architectures, demonstrating that BART-base outperforms T5 in preserving meaning while adopting the target style.
+-   **Robust Gen Z Dictionary Dataset**: we constructed and enchanced a unified dictionary of **1,888 unique slang terms** by merging and standardizing three fragmented open-source datasets (MLBtrio, Programmer-RD-AI, and tawfiayeasmin mentioned above), resolving issues of duplication and missing context.
+-   **Synthetically Enhanced TL;DR Corpus**: we generated **116,578 high-quality parallel training pairs** (original TL;DR $\to$ Gen Z TL;DR). This was achieved using a retrieval-augmented generation pipeline where **OpenAI GPT OSS 120B** rewrote summaries while guided by semantically relevant slang embeddings.
+-  **Supervised Fine-Tuning Evaluation**: we fine-tuned and compared **T5-small** and **BART-base** architectures using our metrics and an LLM judge, demonstrating that BART-base outperforms T5 in preserving meaning while adopting the target style.
 
 ## Methods
 ### Data Analysis
@@ -31,7 +31,7 @@ An LLM (GPT OSS 120B) rewrites the summaries using the retrieved slang, creating
 You can find all the details in the file `data_generation.ipynb`.
 
 ### Modelling
-Our aim is to perform a supervised fine-tuning (SFT) step on a pretrained summarizer. We explore different pretrained summarizers (T5-small and BART-base) and then compare their results. Our target output is Gen Z style summary. Thus, the fine-tuning receives as input a TL;DR prompt, its completion and a respective synthetically generated Gen Z completion.
+Our aim was to perform a supervised fine-tuning (SFT) step on a pretrained summarizer. We explored two pretrained summarizers (T5-small and BART-base) and then compared their results. Our target output is Gen Z style summary. Thus, the fine-tuning input is a TL;DR prompt with a prefix string `summarize with Gen Z slang: `.
 
 ### Evaluation
 We employed a dual evaluation strategy:
