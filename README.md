@@ -23,21 +23,20 @@ Our analysis of existing datasets revealed that no single resource is sufficient
 
 ## Contributions
 
-Our main contributions are as follows.
-- Creating more robust Gen Z dictionary dataset.
-  Combining existing Gen Z datasets and enhancing them with synthetic data for slang translations enables more robust and accurate alignment between slang and formal language, which could be used for improving slang detection and text generation models.
-  We will use it for supervised fine-tuning of a pretrained summarizer.
-- The TL;DR corpus is extended by a new column of synthetic data, which mirrors the completion (TL;DR summary) column but with added Gen Z slang.
-- For evaluation, we want to fine-tune the BLEURT metric with Gen Z embeddings.
-
+Our project makes the following key contributions to the field of style transfer and summarization:
+-   **Robust Gen Z Dictionary**: We constructed a unified dictionary of **1,888 unique slang terms** by merging and standardizing three fragmented open-source datasets (MLBtrio, Programmer-RD-AI, and Kaggle), resolving issues of duplication and missing context.
+-   **Large-Scale Synthetic Corpus**: We generated **116,578 high-quality parallel training pairs** (standard TL;DR $\to$ Gen Z TL;DR). This was achieved using a retrieval-augmented generation pipeline where **OpenAI GPT OSS 120B** rewrote summaries guided by semantically relevant slang embeddings.
+-  **Supervised Fine-Tuning Evaluation**: We successfully fine-tuned and compared **T5-small** and **BART-base** architectures, demonstrating that BART-base significantly outperforms T5 in preserving meaning while adopting the target style.
+  
 ## Methods
 
 ### Data Analysis
 
 We have conducted an exploratory data analysis of the TL;DR corpus and our Gen Z dataset.
 Our Gen Z dataset consists of three existing Gen Z datasets/dictionaries, which are listed in the Proposed Additional Datasets section.
-We generate synthetic data to extend TL;DR for having input paired data for SFT of a pretrained summarizer.
-You can find all the details in file `main.ipynb`.
+We embed neutral translations of slang terms and retrieval-match them to TL;DR summaries using cosine similarity.
+ An LLM (GPT OSS 120B) rewrites the summaries using the retrieved slang, creating a supervised training set.
+You can find all the details in file `data_generation.ipynb`.
 
 ### Modelling
 
@@ -47,7 +46,7 @@ In a later stage of the project, it is possible to extend the framework by addin
 
 ### Evaluation
 We employed a dual evaluation strategy:
-1.  **Automatic Metrics**: A custom **Style Fidelity Score** composed of:
+1.  **Metrics**: A custom **Style Fidelity Score** composed of:
     -   **Semantic Quality**: BERTScore F1 (90% weight) to ensure meaning preservation.
     -   **Slang Fidelity**: A slang density score (10% weight) to penalize deviations from the authentic slang distribution observed in the training data.
 2.  **LLM-based Comparative Evaluation**: We used **Amazon Bedrock** with the model `openai.gpt-oss-120b-1:0` as an external judge. The judge evaluated 3,000 test instances on three dimensions (1-5 scale):
