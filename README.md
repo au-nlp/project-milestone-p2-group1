@@ -34,11 +34,11 @@ You can find all the details in the file `data_generation.ipynb`.
 Our aim was to perform a supervised fine-tuning (SFT) step on a pretrained summarizer. We explored two pretrained summarizers (T5-small and BART-base) and then compared their results. Our target output is Gen Z style summary. Thus, the fine-tuning input is a TL;DR prompt with a prefix string `summarize with Gen Z slang: `.
 
 ### Evaluation
-We employed a dual evaluation strategy:
-1.  **Metrics**: A custom **Style Fidelity Score** composed of:
+We employed a dual evaluation strategy.
+1.  **Metrics**: a custom **Style Fidelity Score** composed of:
     -   **Semantic Quality**: BERTScore F1 (90% weight) to ensure meaning preservation.
     -   **Slang Fidelity**: A slang density score (10% weight) to penalize deviations from the authentic slang distribution observed in the training data.
-2.  **LLM-based Comparative Evaluation**: We used **Amazon Bedrock** with the model `openai.gpt-oss-120b-1:0` as an external judge. The judge evaluated 3,000 test instances on three dimensions (1-5 scale):
+2.  **LLM-based Comparative Evaluation**: we used **Amazon Bedrock** with the model `openai.gpt-oss-120b-1:0` as an external judge. The judge evaluated 3,000 test instances on three dimensions (1-5 scale):
     -   **Meaning Preservation**
     -   **Slang Quality**
     -   **Reddit Naturalness**
