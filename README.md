@@ -71,6 +71,7 @@ Bjarke
 - Data preprocessing
 - Synthetic data generation
 - Training the final models and testing them using our metrics and an LLM judge
+- Running fine-tuning experiments
 - Writing the report
 
 Pablo
