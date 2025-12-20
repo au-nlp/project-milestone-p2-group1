@@ -36,7 +36,7 @@ Our aim was to perform a supervised fine-tuning (SFT) step on a pretrained summa
 ### Evaluation
 In the previous project milestone, we have proposed using BLEURT for evaluating the fine-tuned models. We have scraped this idea because BLEURT would require us to train it with our slang embeddings and then conduct a human rating of labels, so it could learn to judge our gen Z summaries. This would be too time-consuming for the time-scope of the project and even if we used the default BLEURT without fine-tuning it, it woulnd't work well, since it was trained to notice grammar error, bad structure of senteces and such. These are attributes that are commonly found in informal and slang texts, meaning it wouldn't be able to judge our summaries well.
 
-Instead, we employed a dual evaluation strategy described below.
+Instead, we employed a dual evaluation strategy described below, which helps us separate two distinct attributes of a gen Z style summary.
 1.  **Metrics**: a custom **Style Fidelity Score** composed of:
     -   **Semantic Quality**: BERTScore F1 (90% weight) to ensure meaning preservation.
     -   **Slang Fidelity**: A slang density score (10% weight) to penalize deviations from the authentic slang distribution observed in the training data.
