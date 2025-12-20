@@ -2,7 +2,7 @@
 
 # Supervised Fine-tuning for Gen Z Slang Summaries
 ## Abstract
-This project aims to build a dual-stage system trained on TL;DR dataset and our own Gen Z dictionary. The system first converts long texts into concise TL;DRs, then applies style transfer to render summaries in Gen Z slang, creating engaging informal summaries that use contemporary youth language.
+This project proposes a summarization pipeline of a fine-tuned model trained on an enhanced TL;DR corpus and using our own Gen Z dictionary dataset. It creates engaging, informal summaries that use contemporary youth language.
 
 Traditional summarizers, whether extractive (e.g., TextRank) or abstractive (based on seq2seq or Transformer architectures), often produce factually correct but stylistically neutral outputs. These outputs appear non optimal from an appealing and marketable point of view towards young audiences,which value the expressive, and informal tone characteristic of the communication among Gen Z.
 
@@ -34,7 +34,9 @@ You can find all the details in the file `data_generation.ipynb`.
 Our aim was to perform a supervised fine-tuning (SFT) step on a pretrained summarizer. We explored two pretrained summarizers (T5-small and BART-base) and then compared their results. Our target output is Gen Z style summary. Thus, the fine-tuning input is a TL;DR prompt with a prefix string `summarize with Gen Z slang: `.
 
 ### Evaluation
-We employed a dual evaluation strategy.
+In the previous project milestone, we have proposed using BLEURT for evaluating the fine-tuned models. We have scraped this idea because BLEURT would require us to train it with our slang embeddings and then conduct a human rating of labels, so it could learn to judge our gen Z summaries. This would be too time-consuming for the time-scope of the project and even if we used the default BLEURT without fine-tuning it, it woulnd't work well, since it was trained to notice grammar error, bad structure of senteces and such. These are attributes that are commonly found in informal and slang texts, meaning it wouldn't be able to judge our summaries well.
+
+Instead, we employed a dual evaluation strategy described below.
 1.  **Metrics**: a custom **Style Fidelity Score** composed of:
     -   **Semantic Quality**: BERTScore F1 (90% weight) to ensure meaning preservation.
     -   **Slang Fidelity**: A slang density score (10% weight) to penalize deviations from the authentic slang distribution observed in the training data.
@@ -44,7 +46,7 @@ We employed a dual evaluation strategy.
     -   **Reddit Naturalness**
 
 ## Proposed Timeline
-The proposed timeline is sketched out in the table below. The part for milestone 3 might change in the future.
+The proposed timeline is sketched out in the table below. The evaluation part changed from the second milestone due to reasons described above.
 
 | Milestone | Semester Week | Step                               |
 | --------- | ------------- | ---------------------------------- |
