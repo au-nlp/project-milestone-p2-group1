@@ -46,7 +46,7 @@ Instead, we employed a dual evaluation strategy described below, which helps us 
     -   **Reddit Naturalness**
 
 ## Proposed Timeline
-The proposed timeline is sketched out in the table below. The evaluation part changed from the second milestone due to reasons described above.
+The proposed timeline is sketched out in the table below. The evaluation part has changed from the second milestone due to reasons described above.
 
 | Milestone | Semester Week | Step                               |
 | --------- | ------------- | ---------------------------------- |
